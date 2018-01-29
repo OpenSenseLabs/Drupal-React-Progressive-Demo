@@ -786,10 +786,11 @@ $settings['entity_update_batch_size'] = 50;
 $databases['default']['default'] = array (
   'database' => 'drupalreact',
   'username' => 'root',
-  'password' => 'admin',
+  'password' => 'root',
   'prefix' => '',
   'host' => 'localhost',
   'port' => '3306',
+  'unix_socket' => '/Applications/MAMP/tmp/mysql/mysql.sock',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
 );
