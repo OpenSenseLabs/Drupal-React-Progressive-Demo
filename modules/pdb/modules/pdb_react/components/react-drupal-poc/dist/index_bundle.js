@@ -7131,7 +7131,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 __webpack_require__(295);
 
-_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('react-example-1'));
+// ReactDOM.render(<App />, document.getElementById('react-example-1'));
 _reactDom2.default.render(_react2.default.createElement(_Form2.default, null), document.getElementById('react-example-1'));
 
 /***/ }),
