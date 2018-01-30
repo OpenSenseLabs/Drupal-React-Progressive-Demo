@@ -1,0 +1,9 @@
+<?php
+
+function pdb_service_page_attachments_alter(array &$attachments) {
+	// print_r('Test');
+	// die();
+	$attachments['#attached']['library'][] = 'pdb_service/worker';
+	//print_r($build);
+	//die();
+}
