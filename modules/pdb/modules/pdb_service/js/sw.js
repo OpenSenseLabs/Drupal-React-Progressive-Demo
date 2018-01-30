@@ -4,7 +4,9 @@ console.log("i am in");
 var Config = {
     CACHE_VERSION : "testApp",
     CACHE_FILES : [
-        "/"
+        "/",
+        "/core/themes/stable/css/system/components/ajax-progress.module.css",
+        "/core/assets/vendor/normalize-css/normalize.css"
     ],
     NOTIFICATION_TITLE : 'I Was running in the background',
     OPTIONS :{
@@ -36,6 +38,7 @@ self.addEventListener("fetch",function(e){
 // If request got matched with that of cache, then it will show that, otherwise fetch it from the network
         caches.match(e.request).then(function (response) {
             if(response){
+                console.log("From the cache",e.request.url);
                 return response
             }
 
@@ -50,7 +53,7 @@ self.addEventListener("fetch",function(e){
                 //clone the response
 
                 var responseToCache = response.clone()
-
+                console.log("Putting in the cache",e.request.url);
                 caches.open(Config.CACHE_VERSION).then(function (cache) {
                     cache.put(e.request, responseToCache);
                 })
