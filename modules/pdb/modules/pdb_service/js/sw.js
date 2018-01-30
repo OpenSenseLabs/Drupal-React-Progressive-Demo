@@ -1,7 +1,6 @@
 // if you are using chrome verson 41 or older, then you have to include this file.
 // As still, most of the browser does not support the CACHE Api yet.
-//importScripts('/modules/pdb/modules/pdb_service/js/cache-polyfill.js');
-
+console.log("i am in");
 var Config = {
     CACHE_VERSION : "testApp",
     CACHE_FILES : [
@@ -22,6 +21,7 @@ var Config = {
 // A callBack has been passed whenever install event will be called, for handelling the event
 // Remember, Even if a small bit of code gets changed, this event will be called again
 self.addEventListener("install",function(e){
+    console.log(e,"waiting");
     e.waitUntil(
         caches.open(Config.CACHE_VERSION).then(function(cache){
                 return cache.addAll(Config.CACHE_FILES);
