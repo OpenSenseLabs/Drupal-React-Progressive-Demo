@@ -2,5 +2,6 @@ worker:
   version: 1
   js:
     js/includeServiceWorker.js: {}
+    js/cache-polyfill.js: {}
   dependencies:
       - core/jquery
