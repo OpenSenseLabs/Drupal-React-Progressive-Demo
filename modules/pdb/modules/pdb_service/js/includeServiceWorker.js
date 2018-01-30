@@ -25,7 +25,7 @@ function urlB64ToUint8Array(base64String) {
 if ('serviceWorker' in navigator && 'PushManager' in window) {
     console.log('CLIENT: service worker registration in progress.');
     navigator.serviceWorker.register('modules/pdb/modules/pdb_service/js/sw.js').then(function(registration) {
-        console.log("registered");
+        console.log("registered",registration.scope);
         serviceWorkerRegisteration = registration;
         setTimeout(function () {
             Initialize();
