@@ -4,9 +4,7 @@ console.log("i am in");
 var Config = {
     CACHE_VERSION : "testApp",
     CACHE_FILES : [
-        "/",
-        "/Drupal-React-Progressive-Demo/core/assets/vendor/domready/ready.min.js",
-        "/Drupal-React-Progressive-Demo/core/assets/vendor/jquery/jquery.min.js"
+        "/"
     ],
     NOTIFICATION_TITLE : 'I Was running in the background',
     OPTIONS :{
