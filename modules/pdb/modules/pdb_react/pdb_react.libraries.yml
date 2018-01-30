@@ -3,6 +3,9 @@ react:
   js:
     //cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react.min.js: {type: external, minified: true}
     //cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react-dom.min.js: {type: external, minified: true}
+    //cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js: {type: external, minified: true}
+    //ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js: {type: external, minified: true}
   dependencies:
     - core/drupal
+    - core/jquery
     - core/drupalSettings

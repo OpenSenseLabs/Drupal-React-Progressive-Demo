@@ -23950,10 +23950,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
-  function App() {
+  function App(props) {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.weatherInfo = _this.weatherInfo.bind(_this);
+    return _this;
   }
 
   _createClass(App, [{
@@ -23973,20 +23976,19 @@ var App = function (_React$Component) {
     value: function weatherInfo() {
       var ref = this;
       $.ajax({
-        url: "http://samples.openweathermap.org/data/2.5/box/city?bbox=12&appid=b6907d289e10d714a6e88b30761fae22",
+        url: "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=f42f2be0f14d409cb69e3a96b1349dfc",
         traditional: true,
         cache: true,
         async: true,
         success: function success(data) {
           var datap = data;
-          ref.setState({ data: datap.list }, function () {
+          ref.setState({ data: datap.articles }, function () {
             console.log("setdata", ref.state.data);
           });
           $(document).ready(function () {
             $('#example').DataTable();
           });
         }
-
       });
     }
   }, {
@@ -24001,32 +24003,22 @@ var App = function (_React$Component) {
           _react2.default.createElement(
             'td',
             null,
-            todo.name
+            todo.source.name
           ),
           _react2.default.createElement(
             'td',
             null,
-            todo.main.temp
+            todo.title
           ),
           _react2.default.createElement(
             'td',
             null,
-            todo.main.temp_min
+            todo.publishedAt
           ),
           _react2.default.createElement(
             'td',
             null,
-            todo.main.temp_max
-          ),
-          _react2.default.createElement(
-            'td',
-            null,
-            todo.wind.speed
-          ),
-          _react2.default.createElement(
-            'td',
-            null,
-            todo.weather[0].description
+            todo.url
           )
         );
       });
@@ -24046,32 +24038,22 @@ var App = function (_React$Component) {
               _react2.default.createElement(
                 'th',
                 null,
-                'NAME'
+                'SOURCE NAME'
               ),
               _react2.default.createElement(
                 'th',
                 null,
-                'TEMPRATURE'
+                'TITLE'
               ),
               _react2.default.createElement(
                 'th',
                 null,
-                'MIN TEMP'
+                'PUBLISHED AT'
               ),
               _react2.default.createElement(
                 'th',
                 null,
-                'MAX TEMP'
-              ),
-              _react2.default.createElement(
-                'th',
-                null,
-                'WIND SPEED'
-              ),
-              _react2.default.createElement(
-                'th',
-                null,
-                'WEATHER'
+                'URL'
               )
             )
           ),
