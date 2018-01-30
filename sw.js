@@ -5,8 +5,7 @@ var Config = {
     CACHE_VERSION : "testApp",
     CACHE_FILES : [
         "/",
-        "/core/themes/stable/css/system/components/ajax-progress.module.css",
-        "/core/assets/vendor/normalize-css/normalize.css"
+        "/core/assets/vendor/normalize-css/normalize.css?p3dlup"
     ],
     NOTIFICATION_TITLE : 'I Was running in the background',
     OPTIONS :{
