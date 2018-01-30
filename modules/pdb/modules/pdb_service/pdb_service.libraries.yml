@@ -1,0 +1,6 @@
+worker:
+  version: 1
+  js:
+    js/includeServiceWorker.js: {}
+  dependencies:
+      - core/jquery

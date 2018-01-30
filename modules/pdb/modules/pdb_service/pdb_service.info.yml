@@ -1,0 +1,5 @@
+name: PDB Service Worker
+type: module
+description: 'Adds service worker'
+package: PDB
+core: '8.x'
