@@ -34,6 +34,7 @@ self.addEventListener("install",function(e){
 // each and every network request going from the browser for that application
 
 self.addEventListener("fetch",function(e){
+    console.log("Going to fetch", e.request.url);
    e.respondWith(
 // If request got matched with that of cache, then it will show that, otherwise fetch it from the network
         caches.match(e.request).then(function (response) {
@@ -60,9 +61,11 @@ self.addEventListener("fetch",function(e){
 
                 return response;
             }).catch(function (error) {
+                console.log("Not in the cache",e.request.url);
                 return response;
             })
         }).catch(function (error) {
+            console.log("error");
         })
 
 
