@@ -1,19 +1,19 @@
 // if you are using chrome verson 41 or older, then you have to include this file.
 // As still, most of the browser does not support the CACHE Api yet.
-importScripts('/cache-polyfill.js');
+//importScripts('/modules/pdb/modules/pdb_service/js/cache-polyfill.js');
 
 var Config = {
     CACHE_VERSION : "testApp",
     CACHE_FILES : [
         "/",
-        "/index.html",
-        "/style.css",
-        "/vendor/font-awesome/css/font-awesome.min.css",
-        "/vendor/bootstrap/css/bootstrap.min.css",
-        "/vendor/jquery/jquery.min.js",
-        "/vendor/bootstrap/js/bootstrap.bundle.min.js",
-        "/vendor/jquery-easing/jquery.easing.min.js"
-    ]
+        "/Drupal-React-Progressive-Demo/core/assets/vendor/domready/ready.min.js",
+        "/Drupal-React-Progressive-Demo/core/assets/vendor/jquery/jquery.min.js"
+    ],
+    NOTIFICATION_TITLE : 'I Was running in the background',
+    OPTIONS :{
+        body: "Notification from AGWeb.",
+        icon: 'http://wfarm3.dataknet.com/static/resources/icons/set57/dbba6d94.png'
+    }
 };
 
 
@@ -81,4 +81,19 @@ self.addEventListener("activate",function (e) {
             }))
         })
     );
-})
+});
+
+
+// To recive Notification from server.
+self.addEventListener('push', function(e) {
+    console.log('[Service Worker] Push Received.');
+    e.waitUntil(self.registration.showNotification(e.data.text(), Config.OPTIONS));
+});
+
+// Service to run in background
+self.addEventListener('sync', function(event) {
+    console.log("Sync Recieved",event);
+    if (event.tag == 'SyncInBackground') {
+        self.registration.showNotification(Config.NOTIFICATION_TITLE, Config.OPTIONS)
+    }
+});
