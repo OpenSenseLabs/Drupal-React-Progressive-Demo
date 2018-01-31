@@ -3,10 +3,7 @@
 console.log("i am in");
 var Config = {
     CACHE_VERSION : "testApp",
-    CACHE_FILES : [
-        "/",
-        "/core/assets/vendor/normalize-css/normalize.css?p3dlup"
-    ],
+    CACHE_FILES : [],
     NOTIFICATION_TITLE : 'I Was running in the background',
     OPTIONS :{
         body: "Notification from AGWeb.",
@@ -36,15 +33,12 @@ self.addEventListener("fetch",function(e){
     console.log("Going to fetch", e.request.url);
    e.respondWith(
 // If request got matched with that of cache, then it will show that, otherwise fetch it from the network
-        caches.match(e.request).then(function (response) {
-            if(response){
-                console.log("From the cache",e.request.url);
-                return response
-            }
+        caches.match(e.request).then(function (cachedResponse) {
 
             var fetchRequest = e.request.clone();
 
             return fetch(fetchRequest).then(function (response) {
+                console.log(response.type);
                 // Check if we received a valid response
                 if(!response || e.request.url === "chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js") {
                     return response;
@@ -53,15 +47,18 @@ self.addEventListener("fetch",function(e){
                 //clone the response
 
                 var responseToCache = response.clone()
-                console.log("fetching from the network",e.request.url);
+                
                 caches.open(Config.CACHE_VERSION).then(function (cache) {
                     cache.put(e.request, responseToCache);
                 })
 
                 return response;
             }).catch(function (error) {
-                console.log("Not in the cache",e.request.url);
-                return response;
+                if(cachedResponse){
+                    console.log("From the cache",e.request.url);
+                    return cachedResponse
+                }
+                return cachedResponse;
             })
         }).catch(function (error) {
             console.log("error");
