@@ -34,41 +34,41 @@ self.addEventListener("install",function(e){
 
 self.addEventListener("fetch",function(e){
     console.log("Going to fetch", e.request.url);
-//    e.respondWith(
-// // If request got matched with that of cache, then it will show that, otherwise fetch it from the network
-//         caches.match(e.request).then(function (response) {
-//             if(response){
-//                 console.log("From the cache",e.request.url);
-//                 return response
-//             }
+   e.respondWith(
+// If request got matched with that of cache, then it will show that, otherwise fetch it from the network
+        caches.match(e.request).then(function (response) {
+            if(response){
+                console.log("From the cache",e.request.url);
+                return response
+            }
 
-//             var fetchRequest = e.request.clone();
+            var fetchRequest = e.request.clone();
 
-//             return fetch(fetchRequest).then(function (response) {
-//                 // Check if we received a valid response
-//                 if(!response || e.request.url === "chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js") {
-//                     return response;
-//                 }
+            return fetch(fetchRequest).then(function (response) {
+                // Check if we received a valid response
+                if(!response || e.request.url === "chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js") {
+                    return response;
+                }
 
-//                 //clone the response
+                //clone the response
 
-//                 var responseToCache = response.clone()
-//                 console.log("Putting in the cache",e.request.url);
-//                 caches.open(Config.CACHE_VERSION).then(function (cache) {
-//                     cache.put(e.request, responseToCache);
-//                 })
+                var responseToCache = response.clone()
+                console.log("fetching from the network",e.request.url);
+                caches.open(Config.CACHE_VERSION).then(function (cache) {
+                    cache.put(e.request, responseToCache);
+                })
 
-//                 return response;
-//             }).catch(function (error) {
-//                 console.log("Not in the cache",e.request.url);
-//                 return response;
-//             })
-//         }).catch(function (error) {
-//             console.log("error");
-//         })
+                return response;
+            }).catch(function (error) {
+                console.log("Not in the cache",e.request.url);
+                return response;
+            })
+        }).catch(function (error) {
+            console.log("error");
+        })
 
 
-//    );
+   );
 });
 
 // activate event will be fired to kill the old running service worker instance and new service
